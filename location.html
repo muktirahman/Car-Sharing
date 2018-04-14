@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<p>Click the button to get your Location</p>
+
+<button onclick="getLocation()">Get Location</button>
+
+<p id="demo"></p>
+
+<div id="map" style="width:100%;height:500px"></div>
+
+
+<script>
+function getLocation() {
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(showPosition);
+    } else { 
+        x.innerHTML = "Geolocation is not supported by this browser.";
+    }
+}
+
+function showPosition(position) {
+	var a = position.coords.latitude;
+	var b = position.coords.longitude;
+  	var myCenter = new google.maps.LatLng(a,b);
+    var mapCanvas = document.getElementById("map");
+    var mapOptions = {center: myCenter, zoom: 5};
+    var map = new google.maps.Map(mapCanvas, mapOptions);
+    var marker = new google.maps.Marker({position:myCenter});
+    marker.setMap(map);
+
+
+}
+
+
+</script>
+
+		<script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBHFAFlT43_m3RQJ7w534C83nYWplrFba0&callback=initMap">
+    </script>
+
+
+
+</body>
+</html>
